@@ -1,12 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @room.name %>
+  <strong>Cleaning Area:</strong>
+  <%= @room.name.capitalize %>
 </p>
 
+<p>Manage your tasks</p>
+<ul class="list-group">
+  <% @room.tasks.each do |task| %>
+    <li class="list-group-item"><%= task.name %></li>
+  <% end %>
+</ul>
+<%= link_to 'New Task', new_room_task_path(@room) %>
+</p>
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
 
-<p>Add a new task</p>
-<%= link_to 'New Task', new_room_task_path(@room) %>
