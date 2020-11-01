@@ -1,15 +1,9 @@
 class TasksController < ApplicationController
-    before_action :set_task, only: [:show, :edit, :update, :destroy]
-
-    def index
-      @tasks = Task.all
-    end
-
-    def show
-    end
+    before_action :set_room, only: [ :new, :create, :edit, :update, :destroy ]
+    before_action :set_task, only: [ :edit, :update, :destroy]
+   
 
     def new
-      @room = Room.find(params[:room_id])
       @task = Task.new
     end
 
@@ -18,12 +12,11 @@ class TasksController < ApplicationController
   
     def create
       @task= Task.new(task_params)
-      @room = Room.find(params[:room_id])
       @task.room = @room
       respond_to do |format|
         if @task.save
           format.html { redirect_to @room, notice: 'Task was successfully created.' }
-          format.json { render :show, status: :created, location: @task }
+          format.json { render :show, status: :created, location: @room }
         else
           format.html { render :new }
           format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -46,7 +39,7 @@ class TasksController < ApplicationController
     def destroy
       @task.destroy
       respond_to do |format|
-        format.html { redirect_to rooms_url, notice: 'Task was successfully destroyed.' }
+        format.html { redirect_to @room, notice: 'Room was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
@@ -56,7 +49,11 @@ class TasksController < ApplicationController
       def set_task
         @task = Task.find(params[:id])
       end
-  
+
+      def set_room
+        @room = Room.find(params[:room_id])
+      end
+
       # Only allow a list of trusted parameters through.
       def task_params
         params.require(:task).permit(:name)

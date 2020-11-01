@@ -8,7 +8,10 @@
 <p>Manage your tasks</p>
 <ul class="list-group">
   <% @room.tasks.each do |task| %>
-    <li class="list-group-item"><%= task.name %></li>
+    <li class="list-group-item">
+      <%= link_to task.name, edit_room_task_path(@room, task) %>
+      <%= link_to 'Delete', room_task_path(@room, task), method: :delete, :data => {:confirm => 'Are you sure?'}%>
+    </li>
   <% end %>
 </ul>
 <%= link_to 'New Task', new_room_task_path(@room) %>
