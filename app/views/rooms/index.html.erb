@@ -1,26 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Home</h1>
+  <div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Room</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h1>Jiyoung's Cleaning</h1>
 
-  <tbody>
-    <% @rooms.each do |room| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to room.name.capitalize, room %></td>
-        <td><%= link_to '✎', edit_room_path(room) %></td>
-        <td><%= link_to '❌', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col"><h2>Room</h2></th>
+        <th scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @rooms.each do |room| %>
+        <tr>
+          <td scope="row"><%= link_to room.name.capitalize, room %></td>
+          <td><%= link_to '✎', edit_room_path(room) %></td>
+          <td><%= link_to '❌', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Room', new_room_path %>
+  <br>
+
+  <%= link_to 'New Room', new_room_path %>
+</div>

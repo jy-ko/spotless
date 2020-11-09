@@ -20,8 +20,10 @@ gem 'devise'
 gem 'simple_form'
 gem 'webpacker'
 gem 'react-rails'
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
+gem 'devise-bootstrap-views', '~> 1.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
