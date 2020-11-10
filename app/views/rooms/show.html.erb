@@ -7,7 +7,6 @@
     <% @room.tasks.each do |task| %>
       <li class="list-group-item">
         <%= link_to task.name, edit_room_task_path(@room, task) %>
-        <%= task.number %><%= task.frequency %>
         <%= task.set_cycle(task.number, task.frequency) %>
         <%= link_to 'Delete', room_task_path(@room, task), method: :delete, :data => {:confirm => 'Are you sure?'}%>
       </li>
