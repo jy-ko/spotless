@@ -25,6 +25,8 @@ gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'ice_cube'
+gem 'simple_calendar'
+gem 'recurring_select'
 
 
 # Use CoffeeScript for .coffee assets and views

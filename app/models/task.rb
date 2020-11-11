@@ -3,25 +3,37 @@ require 'active_support/time'
 
 class Task < ApplicationRecord
   belongs_to :room
+  serialize :recurring, Hash
 
-  def set_cycle( number, frequency )
-    schedule = IceCube::Schedule.new
-    case frequency 
-    when 'daily'
-      schedule.add_recurrence_rule(IceCube::Rule.daily.count(number))
-    when 'weekly'
-      schedule.add_recurrence_rule(IceCube::Rule.weekly.count(number))
-    when 'monthly'
-      schedule.add_recurrence_rule(IceCube::Rule.monthly.count(number))
+  def recurring=(value)
+    if RecurringSelect.is_valid_rule?(value)
+      super(RecurringSelect.dirty_hash_to_rule(value).to_hash)
+    else
+      super(nil)
     end
 
-    return schedule
+  end
+  
+  def rule
+    IceCube::Rule.from_hash recurring
   end
 
-  def get_next_occurrence
-    #if task has no occurences, schedule.next_occurrence(from_time)     # defaults to Time.now
-    #if task has previous occurrence, 
+  def schedule(start)
+    schedule = IceCube::Schedule.new(start)
+    schedule.add_recurrence_rule(rule)
+    schedule
   end
 
+  def calendar_tasks(start)
+    if recurring.empty?
+      [self]
+    else
+      start_date = start.beginning_of_month.beginning_of_week
+      end_date = start.end_of_month.end_of_week
+      schedule(start_date).occurrences(end_date).map do |date|
+        Task.new(id: id, name: name, start_time: date)
+      end
+    end
+  end
 
 end

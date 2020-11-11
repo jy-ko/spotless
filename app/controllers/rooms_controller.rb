@@ -8,6 +8,8 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @tasks = Task.all
+    @calendar_tasks = @tasks.flat_map { |t| t.calendar_tasks(params.fetch(:start_date, Time.zone.now).to_date)}
   end
 
   # GET /rooms/new

@@ -1,6 +1,31 @@
-<%= simple_form_for [ @room, @task ] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :number %>
-    <%= f.input :frequency, collection: ['daily', 'weekly', 'monthly'] %>
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+<%= form_with(model: [@room, @task], local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= form.label :recurring_select %>
+    <%= form.select_recurring :recurring %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+    
+  </div>
 <% end %>
