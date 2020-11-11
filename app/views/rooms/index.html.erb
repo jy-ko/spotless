@@ -6,22 +6,22 @@
   <p>Resize this responsive page to see the effect!</p>
 </div>
 
-  <h1>Jiyoung's Cleaning</h1>
+  <h1>Jiyoung's Progress</h1>
 
-  <table class="table">
+  <table class="table table-bordered table-dark">
     <thead>
       <tr>
-        <th scope="col"><h2>Room</h2></th>
-        <th scope="col"></th>
+        <th scope="col"><h2>Area</h2></th>
+        <th scope="col"><h3>Options</h3></th>
       </tr>
     </thead>
 
     <tbody>
       <% @rooms.each do |room| %>
         <tr>
-          <td scope="row"><%= link_to room.name.capitalize, room %></td>
-          <td><%= link_to '✎', edit_room_path(room) %></td>
-          <td><%= link_to '❌', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td scope="row"><%= link_to room.name.capitalize, room, class: "text-white" %></td>
+          <td><%= link_to '✎', edit_room_path(room) %>
+          <%= link_to '❌', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
