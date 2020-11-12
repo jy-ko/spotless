@@ -5,11 +5,11 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+    @tasks = Task.all
+    @calendar_tasks = @tasks.flat_map { |t| t.calendar_tasks(params.fetch(:start_date, Time.zone.now).to_date)}
   end
 
   def show
-    @tasks = Task.all
-    @calendar_tasks = @tasks.flat_map { |t| t.calendar_tasks(params.fetch(:start_date, Time.zone.now).to_date)}
   end
 
   # GET /rooms/new

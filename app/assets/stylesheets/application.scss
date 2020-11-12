@@ -1,7 +1,16 @@
 //= require recurring_select
+
 @import "bootstrap";
 @import "simple_calendar";
 
-.text-white {
-    color: white;
+body {
+    color: black;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
 }

@@ -1,33 +1,35 @@
 <div class="container">
+
   <p id="notice"><%= notice %></p>
 
-  <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p>
-</div>
+  <h1><%= current_user.name %>'s Schedule</h1>
 
-  <h1>Jiyoung's Progress</h1>
+  <%= month_calendar events: @calendar_tasks do |day, tasks| %>
+   <div><%= day.strftime("%d") %></div>
+   <% tasks.each do |task| %>
+    <%= task.name %>
+   <% end %>
+  <% end %>
+  
+  <%= link_to 'New Room', new_room_path %>
 
-  <table class="table table-bordered table-dark">
+  <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col"><h2>Area</h2></th>
-        <th scope="col"><h3>Options</h3></th>
+        <th scope="col"><h3>Cleaning Areas</h3></th>
+        <th scope="col"><h3>No. of Tasks</h3></th>
       </tr>
     </thead>
 
     <tbody>
       <% @rooms.each do |room| %>
         <tr>
-          <td scope="row"><%= link_to room.name.capitalize, room, class: "text-white" %></td>
-          <td><%= link_to '✎', edit_room_path(room) %>
-          <%= link_to '❌', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td scope="row"><%= link_to room.name.capitalize, room%></td>
+          <td scope="row"><%= room.tasks.count%></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <br>
 
-  <%= link_to 'New Room', new_room_path %>
 </div>

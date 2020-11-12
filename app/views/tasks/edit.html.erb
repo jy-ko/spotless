@@ -2,6 +2,8 @@
   <h1>Editing Task</h1>
 
   <%= render 'form' %>
-
+ 
+  
   <%= link_to 'Back', room_path(@room) %>
+  <%= link_to 'Delete', room_task_path(@room, @task), method: :delete, :data => {:confirm => 'Are you sure?'}%>
 </div>

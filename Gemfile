@@ -17,13 +17,16 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 # Devise
 gem 'devise'
+gem 'devise-bootstrap-views', '~> 1.0'
+
 gem 'simple_form'
 gem 'webpacker'
 gem 'react-rails'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.5'
-gem 'devise-bootstrap-views', '~> 1.0'
+
+
 gem 'ice_cube'
 gem 'simple_calendar'
 gem 'recurring_select'
