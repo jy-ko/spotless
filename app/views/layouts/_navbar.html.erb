@@ -1,5 +1,21 @@
-<nav class="navbar navbar-light bg-light">
-  <%= link_to root_path, class: 'navbar-brand' do %> 
-   <%= image_tag("logo.png", size: "100x100", class: "d-inline-block align-top", alt: "Edit Entry") %>
-  <% end %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+      <%= link_to 'SpotlessClone', root_path, class:"navbar-brand" %>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+            <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                  <li class="nav-item">
+                    <% if current_user %>
+                      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                    <% else %>
+                      <%= link_to 'Login', new_user_session_path %>
+                    <% end %>
+                  </li>
+                </li>
+            </ul>
+                </li>
+            </ul>
+    </div>
 </nav>
