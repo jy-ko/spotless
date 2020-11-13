@@ -1,17 +1,18 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
-  <h2><%= @room.name.capitalize %></h2>
+  <h2><%= link_to @room.name.capitalize, edit_room_path(@room) %></h2>
 
   <ul class="list-group">
     <% @room.tasks.each do |task| %>
       <li class="list-group-item">
-        <%= link_to task.name, edit_room_task_path(@room, task) %>
+        <%= link_to task.name, edit_room_task_path(@room, task), remote: true %>
       </li>
     <% end %>
   </ul>
-  <%= link_to 'New Task', new_room_task_path(@room) %>
-  </p>
-  <%= link_to 'Edit', edit_room_path(@room) %> 
-  <%= link_to 'Delete', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div id="new-task">
+    <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
+  </div>
+
+  <%= link_to 'Delete Room', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
   <%= link_to 'Back', rooms_path %>
 </div>

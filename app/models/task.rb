@@ -5,6 +5,9 @@ class Task < ApplicationRecord
   belongs_to :room
   serialize :recurring, Hash
 
+  validates :name, length: { minimum: 3 }, presence: true
+  validates :room_id, presence: true
+
   def recurring=(value)
     if RecurringSelect.is_valid_rule?(value)
       super(RecurringSelect.dirty_hash_to_rule(value).to_hash)

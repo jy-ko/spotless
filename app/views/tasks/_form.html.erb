@@ -1,9 +1,7 @@
-
-
 <%= simple_form_for [@room, @task] do |f| %>
   <%= f.input :name %>
   <%= f.input :start_time %>
-  <%= f.select_recurring :recurring, :label => "Select Recurring", include_blank: true%>
+  <%= f.select_recurring :recurring %>
   <%= f.hidden_field :room_id, value: @room.id %>
   <%= f.button :submit %>
 <% end %>

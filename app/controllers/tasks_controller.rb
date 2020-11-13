@@ -5,6 +5,10 @@ class TasksController < ApplicationController
 
     def new
       @task = Task.new
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
 
     def edit
@@ -55,7 +59,7 @@ class TasksController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def task_params
-        params.require(:task).permit(:name, :recurring, :start_time, :last_cleaned, :room_id)
+        params.require(:task).permit(:name, :recurring, :start_time, :room_id)
       end
     
 
