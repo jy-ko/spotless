@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
     before_action :set_room, only: [ :new, :create, :edit, :update, :destroy ]
     before_action :set_task, only: [ :edit, :update, :destroy]
-   
-
+    
     def new
       @task = Task.new
       respond_to do |format|

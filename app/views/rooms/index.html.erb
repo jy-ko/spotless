@@ -3,6 +3,13 @@
   <p id="notice"><%= notice %></p>
 
   <h1><%= current_user.name %>'s Schedule</h1>
+  
+  <ul>
+    <p>Today's tasks for you!</p>
+    <% @todays_tasks.each do |t| %>
+      <li><%= t.name %></li>
+    <% end %>
+  </ul>
 
   <%= month_calendar events: @calendar_tasks do |day, tasks| %>
    <div><%= day.strftime("%d") %></div>

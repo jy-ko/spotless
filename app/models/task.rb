@@ -39,4 +39,8 @@ class Task < ApplicationRecord
     end
   end
 
+  def get_todays_list(tasks)
+    tasks.occurs_on?(Date.today)
+  end
+
 end
