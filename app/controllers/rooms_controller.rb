@@ -15,6 +15,10 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /rooms/1/edit
@@ -28,7 +32,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }

@@ -7,11 +7,13 @@
   <%= month_calendar events: @calendar_tasks do |day, tasks| %>
    <div><%= day.strftime("%d") %></div>
    <% tasks.each do |task| %>
-    <%= task.name %>
+    <%= link_to task.name %>
    <% end %>
   <% end %>
   
-  <%= link_to 'New Room', new_room_path %>
+  <div id="new-room">
+    <%= link_to 'Add Room/Area', new_room_path, remote: true %>
+  </div>
 
   <table class="table table-bordered">
     <thead>
