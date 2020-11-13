@@ -12,7 +12,6 @@ class TasksController < ApplicationController
   
     def create
       @task= Task.new(task_params)
-      @task.room = @room
       respond_to do |format|
         if @task.save
           format.html { redirect_to @room, notice: 'Task was successfully created.' }
@@ -56,7 +55,7 @@ class TasksController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def task_params
-        params.require(:task).permit(:name, :recurring, :start_time, :last_cleaned)
+        params.require(:task).permit(:name, :recurring, :start_time, :last_cleaned, :room_id)
       end
     
 

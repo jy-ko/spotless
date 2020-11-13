@@ -7,7 +7,7 @@
   <%= month_calendar events: @calendar_tasks do |day, tasks| %>
    <div><%= day.strftime("%d") %></div>
    <% tasks.each do |task| %>
-    <%= task.name %>
+    <%= link_to task.name, edit_room_task_path(task.room_id,task) %>
    <% end %>
   <% end %>
   
