@@ -1,1 +1,6 @@
-<%= render "form" %>
+<%= simple_form_for [@room, @task] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_time %>
+  <%= f.select_recurring :recurring %>
+  <%= f.button :submit %>
+<% end %>
