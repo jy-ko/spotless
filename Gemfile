@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # Devise
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'pundit'
 
 gem 'simple_form'
 gem 'webpacker'

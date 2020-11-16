@@ -1,6 +1,11 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
-  <h2><%= link_to @room.name.capitalize, edit_room_path(@room) %></h2>
+
+  <h2>
+    <% if policy(@room).update? %>
+      <%= link_to @room.name.capitalize, edit_room_path(@room) %>
+    <% end %>
+  </h2>
 
   <ul class="list-group">
     <% @room.tasks.each do |task| %>
@@ -10,9 +15,11 @@
     <% end %>
   </ul>
   <div id="new-task">
-    <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
+      <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
   </div>
 
-  <%= link_to 'Delete Room', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if policy(@room).destroy? %>
+    <%= link_to 'Delete Room', @room, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
   <%= link_to 'Back', rooms_path %>
 </div>

@@ -5,21 +5,29 @@
   <h1><%= current_user.name %>'s Schedule</h1>
   
   <ul>
-    <p>Today's tasks for you!</p>
     <% @todays_tasks.each do |t| %>
-      <li><%= t.name %></li>
+      <% if policy(t).show? %>
+        <p>Today's tasks for you!</p>
+        <li><%= t.name %></li>
+      <% else %>
+        <p>Create some cleaning area and schedule tasks</p>
+      <% end%>
     <% end %>
   </ul>
 
   <%= month_calendar events: @calendar_tasks do |day, tasks| %>
    <div><%= day.strftime("%d") %></div>
    <% tasks.each do |task| %>
-    <%= link_to task.name %>
+    <% if policy(task).show? %>
+      <%= link_to task.name %>
+    <% end %>
    <% end %>
   <% end %>
   
   <div id="new-room">
-    <%= link_to 'Add Room/Area', new_room_path, remote: true %>
+    <% if policy(Room).create? %>
+     <%= link_to 'Add Room/Area', new_room_path, remote: true %>
+    <% end %>
   </div>
 
   <table class="table table-bordered">
@@ -33,8 +41,10 @@
     <tbody>
       <% @rooms.each do |room| %>
         <tr>
+        <% if policy(room).show? %>
           <td scope="row"><%= link_to room.name.capitalize, room%></td>
           <td scope="row"><%= room.tasks.count%></td>
+        <% end %>
         </tr>
       <% end %>
     </tbody>
