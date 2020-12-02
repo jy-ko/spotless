@@ -13,7 +13,6 @@ class RoomsController < ApplicationController
   def show
   end
 
-  # GET /rooms/new
   def new
     @room = current_user.rooms.new
     authorize @room
@@ -23,12 +22,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /rooms/1/edit
   def edit
   end
 
-  # POST /rooms
-  # POST /rooms.json
   def create
     @room = current_user.rooms.new(room_params)
     authorize @room
@@ -70,7 +66,7 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = policy_scope(Room).find(params[:id])
       authorize @room
     end
 

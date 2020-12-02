@@ -4,3 +4,5 @@
   <%= f.select_recurring :recurring %>
   <%= f.button :submit %>
 <% end %>
+
+<%= link_to 'Delete Task', room_task_path, method: :delete, data: { confirm: 'Are you sure?' } %>

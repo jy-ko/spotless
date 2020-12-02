@@ -10,14 +10,14 @@ class RoomPolicy < ApplicationPolicy
   end
 
   def create?
-    true  # Anyone can create a room
+    true 
   end
 
   def update?
-    record.user == user  # Only room creator can update it
+    record.user == user
   end
 
   def destroy?
-    record.user == user  # Only room creator can update it
+    record.user == user
   end
 end

@@ -9,15 +9,15 @@ class TaskPolicy < ApplicationPolicy
     end
   
     def create?
-      true   # Anyone can create a task
+      true  
     end
   
     def update?
-      record.user == user  # Only restaurant creator can update it
+      record.user == user  
     end
   
     def destroy?
-      record.user == user  # Only restaurant creator can update it
+      record.user == user 
     end
 
   end

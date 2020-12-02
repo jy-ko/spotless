@@ -10,7 +10,7 @@
   <ul class="list-group">
     <% @room.tasks.each do |task| %>
       <li class="list-group-item">
-        <%= link_to task.name, edit_room_task_path(@room, task) %>
+          <%= link_to task.name, edit_room_task_path(@room, task) %>
       </li>
     <% end %>
   </ul>

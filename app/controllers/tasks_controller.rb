@@ -41,16 +41,15 @@ class TasksController < ApplicationController
     def destroy
       @task.destroy
       respond_to do |format|
-        format.html { redirect_to @room, notice: 'Room was successfully destroyed.' }
+        format.html { redirect_to @room, notice: 'Task was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
   
     private
-      # Use callbacks to share common setup or constraints between actions.
       def set_task
         @task = Task.find(params[:id])
-        authorize @task
+        # authorize @task
       end
 
       def set_room
