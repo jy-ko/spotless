@@ -7,7 +7,7 @@
     <% end %>
   </h2>
 
-  <ul class="list-group">
+  <ul class="list-group-flush">
     <% @room.tasks.each do |task| %>
       <li class="list-group-item">
           <%= link_to task.name, edit_room_task_path(@room, task) %>
