@@ -3,6 +3,7 @@ require 'active_support/time'
 
 class Task < ApplicationRecord
   belongs_to :room
+  delegate :user, :to => :room, :allow_nil => true
   serialize :recurring, Hash
 
   validates :name, length: { minimum: 3 }, presence: true
@@ -37,6 +38,10 @@ class Task < ApplicationRecord
         Task.new(id: id, name: name, start_time: date)
       end
     end
+  end
+
+  def get_todays_list(tasks)
+    tasks.occurs_on?(Date.today)
   end
 
 end

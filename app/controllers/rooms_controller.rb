@@ -4,32 +4,30 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
-    @tasks = Task.all
-    @calendar_tasks = @tasks.flat_map { |t| t.calendar_tasks(params.fetch(:start_date, Time.zone.now).to_date)}
+    @rooms = policy_scope(Room)
+    @tasks = policy_scope(Task)
+    @calendar_tasks = @tasks.flat_map { |t| t.calendar_tasks(params.fetch(:start_date, Time.current).to_date)}
+    @todays_tasks = @calendar_tasks.select { |task| task.start_time.strftime("%Y%m%d") == Date.current.strftime("%Y%m%d") }
   end
 
   def show
   end
 
-  # GET /rooms/new
   def new
-    @room = Room.new
+    @room = current_user.rooms.new
+    authorize @room
     respond_to do |format|
       format.html
       format.js
     end
   end
 
-  # GET /rooms/1/edit
   def edit
   end
 
-  # POST /rooms
-  # POST /rooms.json
   def create
-    @room = Room.new(room_params)
-
+    @room = current_user.rooms.new(room_params)
+    authorize @room
     respond_to do |format|
       if @room.save
         format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
@@ -68,7 +66,8 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = policy_scope(Room).find(params[:id])
+      authorize @room
     end
 
     # Only allow a list of trusted parameters through.

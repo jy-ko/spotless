@@ -1,8 +1,7 @@
 class TasksController < ApplicationController
     before_action :set_room, only: [ :new, :create, :edit, :update, :destroy ]
     before_action :set_task, only: [ :edit, :update, :destroy]
-   
-
+    
     def new
       @task = Task.new
       respond_to do |format|
@@ -42,19 +41,20 @@ class TasksController < ApplicationController
     def destroy
       @task.destroy
       respond_to do |format|
-        format.html { redirect_to @room, notice: 'Room was successfully destroyed.' }
+        format.html { redirect_to @room, notice: 'Task was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
   
     private
-      # Use callbacks to share common setup or constraints between actions.
       def set_task
         @task = Task.find(params[:id])
+        # authorize @task
       end
 
       def set_room
         @room = Room.find(params[:room_id])
+        authorize @room
       end
 
       # Only allow a list of trusted parameters through.
