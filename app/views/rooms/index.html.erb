@@ -5,41 +5,37 @@
 
     <%= month_calendar events: @calendar_tasks do |day, tasks| %>
     <div><%= day.strftime("%d") %></div>
-    <% tasks.each do |task| %>
+      <% tasks.each do |task| %>
         <%= link_to task.name %>
       <% end %>
     <% end %>
     
     <div id="new-room">
       <% if policy(Room).create? %>
-      <%= link_to 'Add Room/Area', new_room_path, remote: true %>
+        <%= link_to 'add new', new_room_path, remote: true%>
+          <%# <i class="fas fa-plus"></i> %>
+        <%# <% end %> 
       <% end %>
     </div>
+    <p>Cleaning Areas</p>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col"><p>Cleaning Areas</p></th>
-          <th scope="col"><p>No. of Tasks</p></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @rooms.each do |room| %>
-          <tr>
-          <% if policy(room).show? %>
-            <td scope="row"><%= link_to room.name.capitalize, room%></td>
-            <td scope="row"><%= room.tasks.count%></td>
-          <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="cards">
+      <% @rooms.each do |room| %>
+        <div class="card">
+          <div class="card-body">
+            <% if policy(room).show? %>
+              <%= link_to room.name.capitalize, room%>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+ 
   </div>
   <div>
     <% if @todays_tasks.length > 0 %>
+      <h3>Today's to-do</h3>
       <% @todays_tasks.each do |t| %> 
-        <h3>Today's to-do</h3>
         <ul class="task-list">
           <li><%= t.name %></li>
         </ul>

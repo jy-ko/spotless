@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   delegate :user, :to => :room, :allow_nil => true
   serialize :recurring, Hash
 
-  validates :name, length: { minimum: 3 }, presence: true
+  validates :name, length: { minimum: 3 }, :presence => true
   validates :room_id, presence: true
 
   def recurring=(value)

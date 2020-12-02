@@ -19,3 +19,4 @@
 //= require bootstrap-sprockets
 //= require recurring_select
 //= require_tree .
+
