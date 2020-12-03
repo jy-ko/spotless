@@ -1,21 +1,25 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
-
-  <h2>
+  <h1>
     <% if policy(@room).update? %>
       <%= link_to @room.name.capitalize, edit_room_path(@room) %>
     <% end %>
   </h2>
 
-  <ul class="list-group-flush">
-    <% @room.tasks.each do |task| %>
-      <li class="list-group-item">
-          <%= link_to task.name, edit_room_task_path(@room, task) %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="center">
+      <% @room.tasks.each do |task| %>
+        <div class="card task">
+            <h3><%= link_to task.name, edit_room_task_path(@room, task) %></h3>
+            <p>Notes:<%= task.notes %></p>
+            <% if task.last_cleaned %>
+              <p><%= task.last_cleaned.strftime("Last cleaned on %d %b %Y")  %></p>
+            <% end %>
+        </div>
+      <% end %>
+  </div>
+
   <div id="new-task">
-      <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
+    <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
   </div>
 
   <% if policy(@room).destroy? %>

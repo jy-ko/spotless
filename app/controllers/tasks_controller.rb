@@ -58,7 +58,7 @@ class TasksController < ApplicationController
       end
 
       def task_params
-        params.require(:task).permit(:name, :recurring, :start_time, :room_id, :completed?)
+        params.require(:task).permit(:name, :recurring, :start_time, :room_id, :notes, :last_cleaned)
       end
     
 

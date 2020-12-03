@@ -2,6 +2,8 @@
     <%= f.input :name %>
     <%= f.input :start_time %>
     <%= f.select_recurring :recurring %>
+    <%= f.input :notes %>
+    <%= f.input :last_cleaned %>
     <%= f.hidden_field :room_id, value: @room.id %>
     <%= f.button :submit %>
     <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>

@@ -1,8 +1,13 @@
-<%= simple_form_for [@room, @task] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :start_time %>
-  <%= f.select_recurring :recurring %>
-  <%= f.button :submit %>
-<% end %>
+<div class="center">
+  <h1>Update Task</h1>
+  <%= simple_form_for [@room, @task] do |f| %>
+    <%= f.input :name, :label => "Task Name" %>
+    <%= f.input :start_time %>
+    <%= f.select_recurring :recurring %>
+    <%= f.input :notes %>
+    <%= f.input :last_cleaned %>
+    <%= f.button :submit %>
+  <% end %>
 
-<%= link_to 'Delete Task', room_task_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Delete Task', room_task_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

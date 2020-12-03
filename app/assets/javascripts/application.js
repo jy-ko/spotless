@@ -20,3 +20,35 @@
 //= require recurring_select
 //= require_tree .
 
+
+// const 
+
+// $('.simple_form.edit_post').submit('submit', function (e) {
+//     e.preventDefault();
+//     form = $(this).serialize();
+//     $.ajax({
+//         type: 'PATCH',
+//         url: '/posts',
+//         data: form,
+//         dataType: 'JSON'
+//     }).done(function (data) {
+//         alert(data.notice);
+//     }).fail(function (data) {
+//         alert(data.alert);
+//     });
+// });
+
+const itemToday = document.getElementById("item-today");
+
+const markComplete = () => {
+    console.log("Complete Task...");
+    itemToday.classList.toggle("complete");
+}
+
+itemToday.addEventListener('click', markComplete);
+
+
+// on page change save to db
+// const ajaxRequest= () => {
+//     console.log("AJAX Request");
+// }
