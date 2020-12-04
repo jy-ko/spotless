@@ -11,10 +11,16 @@ class TaskPolicy < ApplicationPolicy
     def create?
       true  
     end
+
+    # def complete?
+    #   update?
+    # end
   
     def update?
       record.user == user  
     end
+
+
   
     def destroy?
       record.user == user 

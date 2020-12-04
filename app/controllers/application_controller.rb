@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
     include Pundit
+    before_action :skip_authorization, only: [:index, :complete]
     before_action :configure_permitted_parameters, if: :devise_controller?  
   
     protected

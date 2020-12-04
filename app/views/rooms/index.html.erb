@@ -32,13 +32,17 @@
   <div>
     <% if @todays_tasks.length > 0 %>
       <h3>Today's to-do</h3>
-      <% @todays_tasks.each do |t| %> 
-        <ul class="task-list">
-          <li id="item-today"><%= t.name %></li>
-        </ul>
-      <% end %>
+      <div>
+        <% @todays_tasks.each do |task| %> 
+          <div class="task-today">
+            <li id="task-item"><%= task.name %><%task.id%></li>
+            <%= render './tasks/update', task: task%>
+          </div>
+        <% end %>
+
+      <div>
     <% else %>
-      <p>Woo hoo</p>
+      <p>Woo hoo come back tmr!</p>
     <% end %>
   </div>
 </div>

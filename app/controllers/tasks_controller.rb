@@ -38,6 +38,16 @@ class TasksController < ApplicationController
       end
     end
 
+    def complete
+      @task = Task.find((params[:id]))
+      if @task.update_attribute(:last_cleaned, Time.now)
+        redirect_to root_path
+        flash[:alert] = "Yay."
+      else
+        flash[:alert] = "Nay"
+      end
+    end
+
     def destroy
       @task.destroy
       respond_to do |format|
@@ -61,5 +71,4 @@ class TasksController < ApplicationController
         params.require(:task).permit(:name, :recurring, :start_time, :room_id, :notes, :last_cleaned)
       end
     
-
 end

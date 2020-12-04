@@ -20,35 +20,24 @@
 //= require recurring_select
 //= require_tree .
 
-
-// const 
-
-// $('.simple_form.edit_post').submit('submit', function (e) {
-//     e.preventDefault();
-//     form = $(this).serialize();
-//     $.ajax({
-//         type: 'PATCH',
-//         url: '/posts',
-//         data: form,
-//         dataType: 'JSON'
-//     }).done(function (data) {
-//         alert(data.notice);
-//     }).fail(function (data) {
-//         alert(data.alert);
-//     });
-// });
-
-const itemToday = document.getElementById("item-today");
-
-const markComplete = () => {
-    console.log("Complete Task...");
-    itemToday.classList.toggle("complete");
+function checkTask(item) {
+    item.classList.toggle("complete");
 }
 
-itemToday.addEventListener('click', markComplete);
+document.addEventListener('click', function (e) {
+	if (e.target.matches('#task-item')){
+        checkTask(e.target);
+        console.log(e.target.parentElement)
+	}
 
+}, false);
 
-// on page change save to db
-// const ajaxRequest= () => {
-//     console.log("AJAX Request");
-// }
+// const saveDone 
+// $(document).ready(function(){
+//     $.ajax({url: rooms/,
+//              success: function(data) {
+//                $('#posts').html(data);
+//              }
+//     });
+//   });
+//when page refreshes or moves to another page, send ajax request and update task.last_updated if task has class of checked.

@@ -80,3 +80,8 @@ button:focus {
 .complete {
     text-decoration: line-through;
 }
+
+.task-today {
+    display:flex;
+    justify-content: space-between;
+}
