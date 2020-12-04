@@ -17,6 +17,10 @@ class RoomPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def complete?
+    update?
+  end
+
   def destroy?
     record.user == user
   end

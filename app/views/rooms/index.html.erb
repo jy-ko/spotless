@@ -1,7 +1,7 @@
 <div class="contain">
   <div class="main">
     <p id="notice"><%= notice %></p>
-    <h1><%= current_user.name %>'s Schedule</h1>
+    <h1>Hi, <%= current_user.name %>!</h1>
 
     <%= month_calendar events: @calendar_tasks do |day, tasks| %>
     <div><%= day.strftime("%d") %></div>
@@ -12,36 +12,37 @@
     
     <div id="new-room">
       <% if policy(Room).create? %>
-        <%= link_to 'add new', new_room_path, remote: true%>
-          <%# <i class="fas fa-plus"></i> %>
-        <%# <% end %> 
+        <%= link_to 'Add New', new_room_path, remote: true %>
       <% end %>
     </div>
     <p>Cleaning Areas</p>
 
-    <div class="cards">
+    <div class="cards rooms">
       <% @rooms.each do |room| %>
-        <div class="card">
-          <div class="card-body">
-            <% if policy(room).show? %>
-              <%= link_to room.name.capitalize, room%>
-            <% end %>
-          </div>
-        </div>
+        <% if policy(room).show? %>
+          <%= link_to room do %>
+            <div class="card room">
+              <div class="card-body"><%= room.name.capitalize%></div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
- 
   </div>
   <div>
     <% if @todays_tasks.length > 0 %>
       <h3>Today's to-do</h3>
-      <% @todays_tasks.each do |t| %> 
-        <ul class="task-list">
-          <li><%= t.name %></li>
-        </ul>
-      <% end %>
+      <div>
+        <% @todays_tasks.each do |task| %> 
+          <div class="task-today">
+            <li id="task-item"><%= task.name %><%task.id%></li>
+            <%= render './tasks/update', task: task%>
+          </div>
+        <% end %>
+
+      <div>
     <% else %>
-      <p>Create new rooms/areas and schedule tasks</p>
+      <p>Woo hoo come back tmr!</p>
     <% end %>
   </div>
 </div>

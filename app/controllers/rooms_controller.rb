@@ -60,6 +60,7 @@ class RoomsController < ApplicationController
   private
     def set_room
       @room = policy_scope(Room).find(params[:id])
+      authorize @room
     end
 
     def room_params
