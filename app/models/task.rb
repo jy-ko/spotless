@@ -3,7 +3,7 @@ require 'active_support/time'
 
 class Task < ApplicationRecord
   belongs_to :room
-  delegate :user, :to => :room, :allow_nil => true
+  delegate :user, :to => :room
   serialize :recurring, Hash
 
   validates :name, length: { minimum: 3 }, :presence => true

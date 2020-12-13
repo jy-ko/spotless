@@ -1,48 +1,61 @@
-<div class="contain">
+<div class="container">
   <div class="main">
-    <p id="notice"><%= notice %></p>
-    <h1>Hi, <%= current_user.name %>!</h1>
+    <div class="col">
+      <p id="notice"><%= notice %></p>
+      <h1>Hi, <%= current_user.name %>!</h1>
 
-    <%= month_calendar events: @calendar_tasks do |day, tasks| %>
-    <div><%= day.strftime("%d") %></div>
-      <% tasks.each do |task| %>
-        <%= link_to task.name %>
-      <% end %>
-    <% end %>
-    
-    <div id="new-room">
-      <% if policy(Room).create? %>
-        <%= link_to 'Add New', new_room_path, remote: true %>
-      <% end %>
-    </div>
-    <p>Cleaning Areas</p>
-
-    <div class="cards rooms">
-      <% @rooms.each do |room| %>
-        <% if policy(room).show? %>
-          <%= link_to room do %>
-            <div class="card room">
-              <div class="card-body"><%= room.name.capitalize%></div>
-            </div>
+      <%= month_calendar events: @calendar_tasks do |day, tasks| %>
+        <div><%= day.strftime("%d") %></div>
+        <% if tasks.count > 3 %>
+          <% tasks.take(3).each do |task| %>
+            <div><%= link_to task.name.capitalize, room_path(task.room_id)  %></div>
+          <% end %>
+          <p>...</p>
+        <% else %>
+          <% tasks.each do |task| %>
+            <div><%= link_to task.name.capitalize, room_path(task.room_id) %></div>
           <% end %>
         <% end %>
       <% end %>
     </div>
-  </div>
-  <div>
-    <% if @todays_tasks.length > 0 %>
-      <h3>Today's to-do</h3>
-      <div>
-        <% @todays_tasks.each do |task| %> 
-          <div class="task-today">
-            <li id="task-item"><%= task.name %><%task.id%></li>
-            <%= render './tasks/update', task: task%>
-          </div>
-        <% end %>
 
-      <div>
-    <% else %>
-      <p>Woo hoo come back tmr!</p>
-    <% end %>
+    <div class="col">
+      <p></p>
+      <% if @todays_tasks.length > 0 %>
+        <h1 class="todays-title">Today's to-do</h1>
+        <div>
+          <% @todays_tasks.each do |task| %> 
+            <div class="task-today">
+              <li id="task-item">
+                <%= link_to task.name.capitalize, room_path(task.room_id) %><%task.id%>
+              </li>
+              <%= render './tasks/update', task: task%>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>Woo hoo come back tmr!</p>
+      <% end %>
+    </div>
+
+    <div class="col">
+        <div id="new-room">
+          <% if policy(Room).create? %>
+            <%= link_to 'Add New +', new_room_path, remote: true %>
+          <% end %>
+        </div>
+        <h3 class="pt-2 pb-2">Cleaning Areas</h3>
+          <div class="cards rooms">
+            <% @rooms.each do |room| %>
+              <% if policy(room).show? %>
+                <%= link_to room do %>
+                  <div class="card room">
+                    <div class="card-body"><%= room.name.capitalize%></div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
   </div>
 </div>
