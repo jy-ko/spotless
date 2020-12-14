@@ -1,28 +1,10 @@
 <div class="container">
-  <div class="main">
-    <div class="col">
-      <p id="notice"><%= notice %></p>
-      <h1>Hi, <%= current_user.name %>!</h1>
-
-      <%= month_calendar events: @calendar_tasks do |day, tasks| %>
-        <div><%= day.strftime("%d") %></div>
-        <% if tasks.count > 3 %>
-          <% tasks.take(3).each do |task| %>
-            <div><%= link_to task.name.capitalize, room_path(task.room_id)  %></div>
-          <% end %>
-          <p>...</p>
-        <% else %>
-          <% tasks.each do |task| %>
-            <div><%= link_to task.name.capitalize, room_path(task.room_id) %></div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="col">
-      <p></p>
+  <div class="col">
+    <p id="notice"><%= notice %></p>
+  </div>
+   <div class="col">
       <% if @todays_tasks.length > 0 %>
-        <h1 class="todays-title">Today's to-do</h1>
+        <h3 class="todays-title">Today's to-do list</h3>
         <div>
           <% @todays_tasks.each do |task| %> 
             <div class="task-today">
@@ -35,6 +17,21 @@
         </div>
       <% else %>
         <p>Woo hoo come back tmr!</p>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= month_calendar events: @calendar_tasks do |day, tasks| %>
+        <div><%= day.strftime("%d") %></div>
+        <% if tasks.count > 3 %>
+          <% tasks.take(3).each do |task| %>
+            <div><%= link_to task.name.capitalize, room_path(task.room_id)  %></div>
+          <% end %>
+          <p>...</p>
+        <% else %>
+          <% tasks.each do |task| %>
+            <div><%= link_to task.name.capitalize, room_path(task.room_id) %></div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
 
@@ -57,5 +54,4 @@
             <% end %>
           </div>
         </div>
-  </div>
 </div>
