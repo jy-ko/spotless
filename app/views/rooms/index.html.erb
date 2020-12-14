@@ -1,35 +1,20 @@
 <div class="container">
   <div class="col">
     <p id="notice"><%= notice %></p>
+    <div class="menu"><%= link_to 'Todays Todo-list', root_path %></div>
   </div>
-   <div class="col">
-      <% if @todays_tasks.length > 0 %>
-        <h3 class="todays-title">Today's to-do list</h3>
-        <div>
-          <% @todays_tasks.each do |task| %> 
-            <div class="task-today">
-              <li id="task-item">
-                <%= link_to task.name.capitalize, room_path(task.room_id) %><%task.id%>
-              </li>
-              <%= render './tasks/update', task: task%>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>Woo hoo come back tmr!</p>
-      <% end %>
-    </div>
+
     <div class="col">
       <%= month_calendar events: @calendar_tasks do |day, tasks| %>
         <div><%= day.strftime("%d") %></div>
         <% if tasks.count > 3 %>
           <% tasks.take(3).each do |task| %>
-            <div><%= link_to task.name.capitalize, room_path(task.room_id)  %></div>
+            <div><%= task.name.capitalize  %></div>
           <% end %>
           <p>...</p>
         <% else %>
           <% tasks.each do |task| %>
-            <div><%= link_to task.name.capitalize, room_path(task.room_id) %></div>
+            <div><%= task.name.capitalize %></div>
           <% end %>
         <% end %>
       <% end %>

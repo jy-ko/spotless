@@ -3,10 +3,10 @@ require 'active_support/time'
 
 class Task < ApplicationRecord
   belongs_to :room
-  delegate :user, :to => :room
+  delegate :user, :to => :room, :allow_nil => true
   serialize :recurring, Hash
 
-  validates :name, length: { minimum: 3 }, :presence => true
+  validates :name, :presence => true
   validates :room_id, presence: true
 
   def recurring=(value)
@@ -35,7 +35,7 @@ class Task < ApplicationRecord
       # start_date = start.beginning_of_month.beginning_of_week
       end_date = start.end_of_month.end_of_week
       schedule(start_time).occurrences(end_date).map do |date|
-        Task.new(id: id, name: name, start_time: date)
+        Task.new(id: id, name: name, start_time: date, recurring: recurring, room_id: room_id, notes: notes, last_cleaned: last_cleaned )
       end
     end
   end
