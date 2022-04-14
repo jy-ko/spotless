@@ -15,7 +15,6 @@ class TasksController < ApplicationController
   
     def create
       @task = current_user.tasks.new(task_params) 
-      # @task= Task.new(task_params)
       respond_to do |format|
         if @task.save
           format.html { redirect_to @room, notice: 'Task was successfully created.' }
@@ -59,7 +58,8 @@ class TasksController < ApplicationController
   
     private
       def set_task
-        @task = Task.find(params[:id])
+        @task = policy_scope(Task).find(params[:id])
+        authorize @task
       end
 
       def set_room

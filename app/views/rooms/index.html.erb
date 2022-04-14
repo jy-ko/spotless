@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col">
     <p id="notice"><%= notice %></p>
-    <div class="menu"><%= link_to 'Todays Todo-list', root_path %></div>
+    <div class="menu"><%= link_to "Today's Todo-list", root_path %></div>
   </div>
 
     <div class="col">
@@ -26,7 +26,7 @@
             <%= link_to 'Add New +', new_room_path, remote: true %>
           <% end %>
         </div>
-        <h3 class="pt-2 pb-2">Cleaning Areas</h3>
+        <h3 class="pt-2 pb-2">Areas to take care of</h3>
           <div class="cards rooms">
             <% @rooms.each do |room| %>
               <% if policy(room).show? %>

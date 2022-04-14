@@ -1,5 +1,5 @@
 <% if task.last_cleaned == nil || task.last_cleaned < Date.today %>
-    <%= link_to '😈', complete_room_task_path(task.room_id, task), method: :patch, remote: true %> 
+    <%= link_to '☑️', complete_room_task_path(task.room_id, task), method: :patch, remote: true %> 
 <% else %>
     <%= '✅' %>
 <% end %>

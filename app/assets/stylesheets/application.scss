@@ -3,14 +3,14 @@
 @import "simple_calendar";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
-$red: #e63f46;
+$green: #8CC6BA;
 
 body {
     color: black;
     font-family: 'Playfair Display', serif;
 }
 a {
-    color: $red;
+    color: $green;
 }
 .nav-item {
     color: white;
@@ -22,12 +22,12 @@ a {
 }
 
 a:hover {
-    color: $red;
+    color: $green;
     opacity: 0.7;
     text-decoration: none;
 }
 .navbar {
-    background-color: $red;
+    background-color: $green;
     a {
         color: white;
     }
@@ -56,7 +56,7 @@ button:focus {
 
 .card.room {
     background-color: white;
-    border-color: $red;
+    border-color: $green;
     border-radius: 8px;
     text-align: center;
 }
@@ -73,7 +73,7 @@ button:focus {
     margin-top: 16px;
 }
 .simple-calendar .today {
-    background-color: rgba(255, 0, 0, 0.3);
+    background-color: $green;
 }
 
 // .complete {
