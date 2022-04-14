@@ -1,8 +1,8 @@
 <div class="center">
-    <h1>Editing Room</h1>
+    <h1>Edit Area</h1>
     <%= simple_form_for @room do |f| %>
         <%= f.input :name %>
-        <%= f.button :submit %>
+        <%= f.button :submit, 'Update Area' %>
         <%= link_to "Cancel", :back, {:class=>"btn btn-default"} %>
     <% end %>
     <%= link_to 'Show', @room %> |

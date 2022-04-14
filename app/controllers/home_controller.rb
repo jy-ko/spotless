@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  skip_after_action :verify_policy_scoped, :only => :index
+  skip_before_action :authenticate_user!, :only => [:landing]
+  skip_after_action :verify_policy_scoped, :only => [:landing, :index]
   def index
     @rooms = policy_scope(Room)
     @tasks = current_user.tasks
