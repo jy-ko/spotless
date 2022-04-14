@@ -10,7 +10,9 @@
       <% @room.tasks.each do |task| %>
         <div class="card task">
               <h3><%= link_to task.name, edit_room_task_path(@room, task) %></h3>
-              <p>Notes:<%= task.notes %></p>
+              <% if task.notes %>
+                <p><%= task.notes  %></p>
+              <% end %>
               <% if task.last_cleaned %>
                 <p><%= task.last_cleaned.strftime("Last cleaned on %d %b %Y")  %></p>
               <% end %>

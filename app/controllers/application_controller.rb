@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
     include Pundit
-    before_action :skip_authorization, only: [:index, :complete]
+    before_action :skip_authorization, only: [:landing, :index, :complete]
     before_action :configure_permitted_parameters, if: :devise_controller?  
   
     protected
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     def user_not_authorized
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to(root_path)
+    end
+
+    def after_sign_in_path_for(resource)
+      user_root_path # your path
     end
 
     private
