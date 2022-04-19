@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-
+  helper_method :mobile?
   def index
     @rooms = policy_scope(Room)
     @tasks = current_user.tasks
@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
         format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
-        format.html { render :new }
+        format.html { render :_new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
@@ -66,4 +66,7 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:name, :user_id)
     end
+    def mobile? # has to be in here because it has access to "request"
+      request.user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i
+   end
 end

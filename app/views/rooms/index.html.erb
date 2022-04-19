@@ -1,20 +1,39 @@
 <div class="container">
   <div class="col">
     <p id="notice"><%= notice %></p>
-    <div class="menu"><%= link_to "Today's Todo-list", user_root_path %></div>
+
   </div>
 
     <div class="col">
-      <%= month_calendar events: @calendar_tasks do |day, tasks| %>
-        <div><%= day.strftime("%d") %></div>
-        <% if tasks.count > 3 %>
-          <% tasks.take(3).each do |task| %>
-            <div><%= task.name.capitalize  %></div>
-          <% end %>
-          <p>...</p>
+      <% if mobile? %>
+          <% if @todays_tasks.length > 0 %>
+          <h3 class="todays-title">Today's to-do list</h3>
+          <div>
+            <% @todays_tasks.each do |task| %> 
+              <div class="task-today">
+                <li id="task-item">
+                  <%= link_to task.name.capitalize, edit_room_task_path(task.room_id, task) %>
+                </li>
+                <%= render './tasks/update', task: task %>
+              </div>
+            <% end %>
+          </div>
         <% else %>
-          <% tasks.each do |task| %>
-            <div><%= task.name.capitalize %></div>
+          <p>Woo hoo come back tomorrow!</p>
+        <% end %>
+      <% else %>
+        <div class="menu"><%= link_to "Today's Todo-list", user_root_path %></div>
+        <%= month_calendar events: @calendar_tasks do |day, tasks| %>
+          <div><%= day.strftime("%d") %></div>
+          <% if tasks.count > 3 %>
+            <% tasks.take(3).each do |task| %>
+              <div><%= task.name.capitalize  %></div>
+            <% end %>
+            <p>...</p>
+          <% else %>
+            <% tasks.each do |task| %>
+              <div><%= task.name.capitalize %></div>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
