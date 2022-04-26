@@ -21,7 +21,7 @@
   </div>
 
   <div id="new-task">
-    <%= link_to 'Add new', new_room_task_path(@room), remote: true %>
+    <%= link_to 'Add new Task', new_room_task_path(@room), remote: true %>
   </div>
 
   <% if policy(@room).destroy? %>

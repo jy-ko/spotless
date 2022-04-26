@@ -31,13 +31,3 @@ document.addEventListener('click', function (e) {
 	}
 
 }, false);
-
-// const saveDone 
-// $(document).ready(function(){
-//     $.ajax({url: rooms/,
-//              success: function(data) {
-//                $('#posts').html(data);
-//              }
-//     });
-//   });
-//when page refreshes or moves to another page, send ajax request and update task.last_updated if task has class of checked.
