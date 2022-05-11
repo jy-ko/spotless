@@ -7,9 +7,9 @@ Inspiration: I have found it quite challenging to keep track of the non-routine 
 The user can:
 - create, read, update, delete a Task
 - create, read, update, delete a Room (area) 
-- set last cleaned date of a Task
-- set recurring frequency of a Task
-- view all tasks on a calendar in the dashboard
+- set last cleaned date for a Task
+- set recurring frequency for a Task
+- view all tasks on a monthly calendar in the dashboard
 - view all tasks that need to be completed today
 - mark tasks as 'complete' on the 'Today's to-do' page
 
