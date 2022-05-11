@@ -15,9 +15,9 @@ The user can:
 
 Built with: 
 
-*Ruby on Rails 
+* Ruby on Rails 
 
 
 Gems:
 
-*recurring-select
+* recurring-select
