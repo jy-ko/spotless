@@ -21,3 +21,6 @@ Built with:
 Gems:
 
 * recurring-select
+
+
+![Screenshot 2022-04-26 at 19 14 04](https://user-images.githubusercontent.com/53289659/167841830-b5234d5b-bad9-4049-9bb6-b014aef00be6.png)
