@@ -1,24 +1,23 @@
-# README
+# Spotless Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+When was the last time you descaled the coffee machine? or deep-cleaned the air conditioning units? 
 
-Things you may want to cover:
+Inspiration: I have found it quite challenging to keep track of the non-routine tasks that need to be done for the upkeep of the house. When was it last cleaned? When should be the next one? 
 
-* Ruby version
+The user can:
+- create, read, update, delete a Task
+- create, read, update, delete a Room (area) 
+- set last cleaned date of a Task
+- set recurring frequency of a Task
+- view all tasks on a calendar in the dashboard
+- view all tasks that need to be completed today
+- mark tasks as 'complete' on the 'Today's to-do' page
 
-* System dependencies
+Built with: 
 
-* Configuration
+*Ruby on Rails 
 
-* Database creation
 
-* Database initialization
+Gems:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*recurring-select
