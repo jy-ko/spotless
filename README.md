@@ -1,4 +1,4 @@
-# Spotless Clone
+# Spotless Clone - manage your chores
 
 When was the last time you descaled the coffee machine? or deep-cleaned the air conditioning units? 
 
