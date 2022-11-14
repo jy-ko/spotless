@@ -1,8 +1,13 @@
 # Spotless Clone - manage your chores
 
-When was the last time you descaled the coffee machine? or deep-cleaned the air conditioning units? 
+Motivation: 
 
-Inspiration: I have found it quite challenging to keep track of the non-routine tasks that need to be done for the upkeep of the house. When was it last cleaned? When should be the next one? 
+I have found it quite challenging to keep track of the routine/non-routine tasks that need to be done for the upkeep of the house, e.g. remembering to clean or service the airconditioning unit. There is an existing mobile app called Spotless that aims to achieve this objective, so I have decided to use the same name for the application.
+
+The questions I wanted to answer were:
+- When was the last time the task was done? 
+- When should be the next one? 
+- What are the pending tasks for today?
 
 The user can:
 - create, read, update, delete a Task
@@ -14,12 +19,9 @@ The user can:
 - mark tasks as 'complete' on the 'Today's to-do' page
 
 Built with: 
-
 * Ruby on Rails 
 
-
 Gems:
-
 * recurring-select
 
 
